@@ -3,5 +3,6 @@ from schemas.movies import (
     MovieDetailSchema,
     MoviePaginationSchema,
     MovieCreateSchema,
-    MovieUpdateSchema
+    MovieUpdateSchema,
+    MovieStatusEnum
 )
