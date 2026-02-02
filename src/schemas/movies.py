@@ -12,6 +12,7 @@ class MovieStatusEnum(str, Enum):
 
 class CountrySchema(BaseModel):
     id: int
+    code: str
     name: str
     model_config = ConfigDict(from_attributes=True)
 
@@ -70,10 +71,10 @@ class MovieCreateSchema(BaseModel):
     status: MovieStatusEnum = MovieStatusEnum.released
     budget: float = 0.0
     revenue: float = 0.0
-    country_id: Optional[int] = None
-    genre_ids: List[int] = []
-    actor_ids: List[int] = []
-    language_ids: List[int] = []
+    country: Optional[str] = None
+    genres: List[str] = []
+    actors: List[str] = []
+    languages: List[str] = []
 
 
 class MovieUpdateSchema(BaseModel):
