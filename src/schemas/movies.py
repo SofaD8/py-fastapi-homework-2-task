@@ -77,8 +77,12 @@ class MovieReadSchema(BaseModel):
     )
 
 
+class MovieListItemSchema:
+    pass
+
+
 class MoviePaginationSchema(BaseModel):
-    movies: List[MovieReadSchema]
+    movies: List[MovieListItemSchema]
     prev_page: Optional[str] = None
     next_page: Optional[str] = None
     total_pages: int
@@ -88,3 +92,31 @@ class MoviePaginationSchema(BaseModel):
         from_attributes=True,
         arbitrary_types_allowed=True
     )
+
+
+class LanguageSchema(BaseModel):
+    id: int
+    name: str
+    model_config = ConfigDict(from_attributes=True)
+
+
+class MovieListItemSchema(BaseModel):
+    id: int
+    name: str
+    date: Optional[date]
+    score: float
+    overview: str
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class MovieDetailSchema(MovieListItemSchema):
+    status: MovieStatusEnum
+    budget: float
+    revenue: float
+    country: CountrySchema
+    genres: List[GenreSchema]
+    actors: List[ActorSchema]
+    languages: List[LanguageSchema]
+
+    model_config = ConfigDict(from_attributes=True)
